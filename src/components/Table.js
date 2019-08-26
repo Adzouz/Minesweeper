@@ -12,7 +12,7 @@ class Table extends Component {
     }
     return (
       <div style={tableContainerStyle}>
-        <div className="remaining" style={remainingStyle}>Remaining tiles: {nbLeftTiles}</div>
+        <div className="remaining" style={remainingStyle}>Remaining tiles: <strong>{nbLeftTiles}</strong></div>
         <div className="scrollable-table" style={scrollableTableStyle}>
           <table style={tableStyle}>
             <tbody>
@@ -44,7 +44,8 @@ const tableContainerStyle = {
 };
 
 const remainingStyle = {
-  fontSize: '2rem'
+  fontSize: '2rem',
+  color: '#fff'
 };
 
 const scrollableTableStyle = {
