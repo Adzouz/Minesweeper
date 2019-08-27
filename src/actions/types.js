@@ -1,0 +1,2 @@
+export const UPDATE_MATRIX = 'UPDATE_MATRIX';
+export const UPDATE_GAME_STATUS = 'UPDATE_GAME_STATUS';

@@ -5,10 +5,10 @@ import TableRow from './TableRow';
 class Table extends Component {
   render() {
     const tableRows = [];
-    const { table, nbLeftTiles, endGame, showTile, toggleMarkTile } = this.props;
+    const { table, nbLeftTiles } = this.props;
     // Loop on rows to generate them in table
     for (var i = 0; i < table.length; i++) {
-      tableRows.push(<TableRow columns={table[i]} key={i} row={i} showTile={showTile} toggleMarkTile={toggleMarkTile} endGame={endGame} />);
+      tableRows.push(<TableRow key={i} row={i} columns={table[i]} nbLeftTiles={nbLeftTiles} />);
     }
     return (
       <div style={tableContainerStyle}>
@@ -28,9 +28,7 @@ class Table extends Component {
 // Prop types
 Table.propTypes = {
   table: PropTypes.array.isRequired,
-  showTile: PropTypes.func.isRequired,
-  toggleMarkTile: PropTypes.func.isRequired,
-  endGame: PropTypes.func.isRequired
+  nbLeftTiles: PropTypes.number.isRequired
 };
 
 // Inline styling
