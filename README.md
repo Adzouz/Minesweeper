@@ -2,6 +2,10 @@
 
 Made with React + Redux 💥
 
+## Demo
+
+Demo available here: [https://thewebsdoor.github.io/Minesweeper/](https://thewebsdoor.github.io/Minesweeper/)
+
 ## Available Scripts
 
 In the project directory, you can run:
