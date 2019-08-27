@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://thewebsdoor.github.io/Minesweeper",
   "dependencies": {
+    "eslint-utils": "1.4.1",
     "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
     "react": "^16.9.0",
