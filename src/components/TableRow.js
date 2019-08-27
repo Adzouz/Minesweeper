@@ -5,10 +5,10 @@ import TableCell from './TableCell';
 class TableRow extends Component {
   render() {
     const tableCells = [];
-    const { columns, row, endGame, showTile, toggleMarkTile } = this.props;
+    const { row, columns, nbLeftTiles } = this.props;
     // Loop on columns to generate cells in table
     for (var i = 0; i < columns.length; i++) {
-      tableCells.push(<TableCell coords={[row, i]} infos={columns[i]} key={i} showTile={showTile} toggleMarkTile={toggleMarkTile} endGame={endGame} />);
+      tableCells.push(<TableCell coords={[row, i]} infos={columns[i]} key={i} nbLeftTiles={nbLeftTiles} />);
     }
     return (
       <tr className="row" style={rowStyle}>
@@ -22,9 +22,7 @@ class TableRow extends Component {
 TableRow.propTypes = {
   columns: PropTypes.array.isRequired,
   row: PropTypes.number.isRequired,
-  showTile: PropTypes.func.isRequired,
-  toggleMarkTile: PropTypes.func.isRequired,
-  endGame: PropTypes.func.isRequired
+  nbLeftTiles: PropTypes.number.isRequired
 };
 
 // Inline styling

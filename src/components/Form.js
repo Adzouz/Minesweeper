@@ -12,9 +12,9 @@ class Form extends Component {
   render() {
     return (
       <form style={formStyle}>
-        <label style={infoFormStyle}>Rows: <input type="number" name="nbRows" value={this.props.nbRows} onChange={this.handleChange} style={inputStyle} /></label>
-        <label style={infoFormStyle}>Columns: <input type="number" name="nbColumns" value={this.props.nbColumns} onChange={this.handleChange} style={inputStyle} /></label>
-        <label style={infoFormStyle}>Bombs: <input type="number" min="1" max={Math.round((this.props.nbRows * this.props.nbColumns) - ((this.props.nbRows * this.props.nbColumns) / 100 * 50))} name="nbBombs" value={this.props.nbBombs} onChange={this.handleChange} style={inputStyle} /></label>
+        <label style={infoFormStyle}>Rows: <input type="number" pattern="\d*" name="nbRows" value={this.props.nbRows} onChange={this.handleChange} style={inputStyle} /></label>
+        <label style={infoFormStyle}>Columns: <input type="number" pattern="\d*" name="nbColumns" value={this.props.nbColumns} onChange={this.handleChange} style={inputStyle} /></label>
+        <label style={infoFormStyle}>Bombs: <input type="number" pattern="\d*" min="1" max={Math.round((this.props.nbRows * this.props.nbColumns) - ((this.props.nbRows * this.props.nbColumns) / 100 * 50))} name="nbBombs" value={this.props.nbBombs} onChange={this.handleChange} style={inputStyle} /></label>
       </form>
     );
   }
