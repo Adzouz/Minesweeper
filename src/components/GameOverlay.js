@@ -38,7 +38,8 @@ const gameOverlayStyle = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  zIndex: '2'
 };
 
 const overlayStyle = {
@@ -48,7 +49,7 @@ const overlayStyle = {
   bottom: '0',
   left: '0',
   right: '0',
-  zIndex: '1'
+  zIndex: '2'
 };
 
 const h2Style = {
@@ -58,8 +59,9 @@ const h2Style = {
   padding: '10px 15px',
   marginBottom: '20px',
   position: 'relative',
-  zIndex: '1',
-  textAlign: 'center'
+  zIndex: '3',
+  textAlign: 'center',
+  flex: '0'
 };
 
 const buttonStyle = {
@@ -73,7 +75,7 @@ const buttonStyle = {
   cursor: 'pointer',
   borderRadius: '5px',
   position: 'relative',
-  zIndex: '2'
+  zIndex: '3'
 };
 
 const gifOverlayStyle = {
@@ -98,7 +100,7 @@ const gif2Style = {
   bottom: '-20%',
   left: '0',
   width: '100%',
-  zIndex: '1'
+  zIndex: '2'
 };
 
 const gif3Style = {

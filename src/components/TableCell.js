@@ -6,7 +6,12 @@ import { updateMatrix, updateGameStatus } from '../actions/gameActions';
 class TableCell extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      animated: false
+    };
     this.handleClick = this.handleClick.bind(this);
+    this.handleButtonPress = this.handleButtonPress.bind(this);
+    this.handleButtonRelease = this.handleButtonRelease.bind(this);
   }
   handleClick(e) {
     e.preventDefault();
@@ -24,6 +29,13 @@ class TableCell extends Component {
       // Detect if right click to toggle flag mark on cell
       this.toggleMarkTile(coords);
     }
+  }
+  handleButtonPress() {
+    const { coords } = this.props;
+    this.buttonPressTimer = setTimeout(() => this.toggleMarkTile(coords), 600);
+  }
+  handleButtonRelease() {
+    clearTimeout(this.buttonPressTimer);
   }
   displayAll() {
     const matrix = this.props.matrix.map((r) => {
@@ -138,14 +150,21 @@ class TableCell extends Component {
     };
   }
   render() {
-    const { bomb, counter, marked, showed } = this.props.infos;
+    const { bomb, counter, marked, showed, suggested } = this.props.infos;
+    const animatedClass = marked ? 'animated ' : '';
+    const suggestedClass = suggested && !showed ? 'suggested' : '';
     return (<td
       className="col"
       style={this.getCellStyle()}
       onClick={this.handleClick}
       onContextMenu={this.handleClick}
+      onTouchStart={this.handleButtonPress}
+      onTouchEnd={this.handleButtonRelease}
+      onMouseDown={this.handleButtonPress}
+      onMouseUp={this.handleButtonRelease}
+      onMouseLeave={this.handleButtonRelease}
     >
-      <div>{
+      <div className={animatedClass + suggestedClass}>{
         // Put a flag if marked
         marked ?
           (<span role="img" aria-label="flag">🚩</span>)
@@ -157,7 +176,7 @@ class TableCell extends Component {
           counter
         // Or just leave a blank
         :
-          ""
+          (<span role="img" aria-label="flag">🚩</span>)
         }</div>
     </td>);
   }
