@@ -14,16 +14,23 @@ class App extends Component {
     this.state = {
       nbRows: 10,
       nbColumns: 7,
-      nbBombs: 10
+      nbBombs: 10,
+      showSettings: false
     };
     // Bind this to all functions that use the state
     this.handleChange = this.handleChange.bind(this);
     this.resetBombs = this.resetBombs.bind(this);
     this.nbLeftTiles = this.nbLeftTiles.bind(this);
+    this.toggleDisplaySettings = this.toggleDisplaySettings.bind(this);
   }
   handleChange(event) {
     // If something is changed in one of the input in form, update the value in the state and reset the board
     this.setState({ [event.target.name]: parseInt(event.target.value) > 0 ? parseInt(event.target.value) : 1 }, this.resetBombs);
+  }
+  toggleDisplaySettings() {
+    this.setState({
+      showSettings: !this.state.showSettings
+    })
   }
   nbLeftTiles() {
     let counter = 0;
@@ -78,6 +85,7 @@ class App extends Component {
       matrix[bc[0]][bc[1]].bomb = true;
       return bc;
     });
+    const suggestedTiles = [];
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
         let counter = 0;
@@ -93,7 +101,14 @@ class App extends Component {
           return bc;
         });
         matrix[i][j].counter = counter;
+        if (counter === 0) {
+          suggestedTiles.push([i, j]);
+        }
       }
+    }
+    if (suggestedTiles.length > 0) {
+      const selectedSuggestedTile = suggestedTiles[Math.floor(Math.random() * Math.floor(suggestedTiles.length))];
+      matrix[selectedSuggestedTile[0]][selectedSuggestedTile[1]].suggested = true;
     }
     this.props.updateGameStatus(false);
     // Update the matrix in store
@@ -110,9 +125,14 @@ class App extends Component {
     if (this.props.gameOver || (this.nbLeftTiles() <= 0 && !this.props.gameOver)) {
       gameOverlay = (<GameOverlay gameOver={this.props.gameOver} resetGame={this.resetBombs} />)
     }
+    let settingsTextButton = 'SETTINGS';
+    if (this.state.showSettings) {
+      settingsTextButton = 'CLOSE';
+    }
     return (
       <div className="App" style={appStyle}>
-        <Form handleChange={this.handleChange} nbRows={this.state.nbRows} nbColumns={this.state.nbColumns} nbBombs={this.state.nbBombs} />
+        <button style={settingsButtonStyle} onClick={this.toggleDisplaySettings}>{settingsTextButton}</button>
+        <Form handleChange={this.handleChange} nbRows={this.state.nbRows} nbColumns={this.state.nbColumns} nbBombs={this.state.nbBombs} showSettings={this.state.showSettings} closeModal={this.toggleDisplaySettings} />
         {gameOverlay}
         <Table table={this.props.matrix} nbLeftTiles={this.nbLeftTiles()} />
       </div>
@@ -136,8 +156,19 @@ const appStyle = {
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center'
+  alignItems: 'center'
+};
+
+const settingsButtonStyle = {
+  backgroundColor: '#fff',
+  border: '0',
+  appearance: 'none',
+  padding: '8px 20px',
+  cursor: 'pointer',
+  display: 'block',
+  position: 'relative',
+  zIndex: '2',
+  marginTop: '30px'
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

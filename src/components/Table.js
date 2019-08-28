@@ -38,11 +38,11 @@ const tableContainerStyle = {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '100%'
+  width: '100%',
+  marginBottom: '10px'
 };
 
 const remainingStyle = {
-  fontSize: '2rem',
   color: '#fff'
 };
 
