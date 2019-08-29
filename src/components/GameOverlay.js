@@ -3,6 +3,7 @@ import React from 'react';
 function GameOverlay({ gameOver, resetGame }) {
   return !gameOver ? (
     <div className="game-overlay" style={gameOverlayStyle}>
+      <span style={overlayStyle}></span>
       <h2 style={h2Style}><span role="img" aria-label="hurray">🎉</span> YOU WIN <span role="img" aria-label="hurray">🎉</span></h2>
       <button style={buttonStyle} onClick={resetGame}>Reset</button>
     </div>
