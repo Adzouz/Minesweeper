@@ -24,6 +24,17 @@ class TableCell extends Component {
       if (infos.bomb) {
         this.displayAll();
         this.props.updateGameStatus(true);
+        // Add a losed game in local storage
+        let playedGames = JSON.parse(localStorage.getItem('played_games'));
+        if (playedGames) {
+          ++playedGames.lost;
+        } else {
+          playedGames = {
+            won: 0,
+            lost: 1
+          };
+        }
+        localStorage.setItem('played_games', JSON.stringify(playedGames));
       }
     } else if (e.type === 'contextmenu') {
       // Detect if right click to toggle flag mark on cell
@@ -38,6 +49,7 @@ class TableCell extends Component {
     clearTimeout(this.buttonPressTimer);
   }
   displayAll() {
+    console.log('ici');
     const matrix = this.props.matrix.map((r) => {
       return r.map((c) => {
         c.showed = true;
@@ -48,11 +60,15 @@ class TableCell extends Component {
     this.props.updateMatrix(matrix);
   }
   showTile(coords) {
+    let nbLeftTiles = 0;
     const matrix = this.props.matrix.map((r, rowIndex) => {
       return r.map((c, colIndex) => {
         if (rowIndex === coords[0] && colIndex === coords[1]) {
           c.marked = false;
           c.showed = true;
+        }
+        if (!c.showed && !c.bomb) {
+          nbLeftTiles++
         }
         return c;
       });
@@ -60,8 +76,19 @@ class TableCell extends Component {
     // Update the matrix in store
     this.props.updateMatrix(matrix);
     // If no more tile to discover and we don't have a game over, it's because the player has won the game so reveal all tiles
-    if (this.props.nbLeftTiles === 0 && !this.props.gameOver) {
+    if (nbLeftTiles === 0 && !this.props.gameOver) {
       this.displayAll();
+      // Add a won game in local storage
+      let playedGames = JSON.parse(localStorage.getItem('played_games'));
+      if (playedGames) {
+        ++playedGames.won;
+      } else {
+        playedGames = {
+          won: 1,
+          lost: 0
+        };
+      }
+      localStorage.setItem('played_games', JSON.stringify(playedGames));
     }
     // If we are on an empty cell, we'll check the cells around to display
     if (matrix[coords[0]][coords[1]].counter === 0 && !matrix[coords[0]][coords[1]].bomb) {

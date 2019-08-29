@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { updateMatrix, updateGameStatus } from './actions/gameActions';
 
 // Components
+import Actions from './components/Actions';
+import Stats from './components/Stats';
+import Modal from './components/Modal'
 import Form from './components/Form'
 import GameOverlay from './components/GameOverlay'
 import Table from './components/Table'
@@ -15,13 +18,16 @@ class App extends Component {
       nbRows: 10,
       nbColumns: 7,
       nbBombs: 10,
-      showSettings: false
+      showSettings: false,
+      showStats: false
     };
     // Bind this to all functions that use the state
     this.handleChange = this.handleChange.bind(this);
     this.resetBombs = this.resetBombs.bind(this);
     this.nbLeftTiles = this.nbLeftTiles.bind(this);
-    this.toggleDisplaySettings = this.toggleDisplaySettings.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.displaySettings = this.displaySettings.bind(this);
+    this.displayStats = this.displayStats.bind(this);
   }
   handleChange(event) {
     // If something is changed in one of the input in form, update the value in the state and reset the board
@@ -30,9 +36,22 @@ class App extends Component {
   reloadApp() {
     window.location.reload(true);
   }
-  toggleDisplaySettings() {
+  displaySettings() {
     this.setState({
-      showSettings: !this.state.showSettings
+      showStats: false,
+      showSettings: true
+    })
+  }
+  displayStats() {
+    this.setState({
+      showStats: true,
+      showSettings: false
+    })
+  }
+  closeModal() {
+    this.setState({
+      showStats: false,
+      showSettings: false
     })
   }
   nbLeftTiles() {
@@ -128,14 +147,15 @@ class App extends Component {
     if (this.props.gameOver || (this.nbLeftTiles() <= 0 && !this.props.gameOver)) {
       gameOverlay = (<GameOverlay gameOver={this.props.gameOver} resetGame={this.resetBombs} />)
     }
-    let settingsTextButton = 'SETTINGS';
-    if (this.state.showSettings) {
-      settingsTextButton = 'CLOSE';
-    }
     return (
       <div className="App" style={appStyle}>
-        <button style={settingsButtonStyle} onClick={this.toggleDisplaySettings}>{settingsTextButton}</button>
-        <Form handleChange={this.handleChange} nbRows={this.state.nbRows} nbColumns={this.state.nbColumns} nbBombs={this.state.nbBombs} showSettings={this.state.showSettings} closeModal={this.toggleDisplaySettings} />
+        <Actions showSettings={this.state.showSettings} showStats={this.state.showStats} closeModal={this.closeModal} displaySettings={this.displaySettings} displayStats={this.displayStats} />
+        <Modal showModal={this.state.showStats} closeModal={this.closeModal}>
+          <Stats />
+        </Modal>
+        <Modal showModal={this.state.showSettings} closeModal={this.closeModal}>
+          <Form handleChange={this.handleChange} nbRows={this.state.nbRows} nbColumns={this.state.nbColumns} nbBombs={this.state.nbBombs} />
+        </Modal>
         {gameOverlay}
         <Table table={this.props.matrix} nbLeftTiles={this.nbLeftTiles()} />
         <div id="notification" onClick={() => this.reloadApp()}>New update available, click on this message to load it.</div>
@@ -161,18 +181,6 @@ const appStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center'
-};
-
-const settingsButtonStyle = {
-  backgroundColor: '#fff',
-  border: '0',
-  appearance: 'none',
-  padding: '8px 20px',
-  cursor: 'pointer',
-  display: 'block',
-  position: 'relative',
-  zIndex: '2',
-  marginTop: '30px'
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
