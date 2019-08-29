@@ -158,6 +158,7 @@ class App extends Component {
         </Modal>
         {gameOverlay}
         <Table table={this.props.matrix} nbLeftTiles={this.nbLeftTiles()} />
+        <a href="https://thewebsdoor.com" target="_blank" rel="noopener noreferrer" style={linkStyle}>The Web's Door</a>
         <div id="notification" onClick={() => this.reloadApp()}>New update available, click on this message to load it.</div>
       </div>
     );
@@ -181,6 +182,12 @@ const appStyle = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center'
+};
+
+const linkStyle = {
+  fontSize: '1.4rem',
+  color: '#fff',
+  marginBottom: '20px'
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
