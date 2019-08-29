@@ -2,7 +2,7 @@ import React from 'react';
 
 const Icons = ({ name }) => {
   return (
-    <img src={'/icons/' + name + '.svg'} alt="" style={iconStyle} />
+    <img src={process.env.PUBLIC_URL + '/icons/' + name + '.svg'} alt="" style={iconStyle} />
   );
 }
 
