@@ -28,6 +28,7 @@ class App extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.displaySettings = this.displaySettings.bind(this);
     this.displayStats = this.displayStats.bind(this);
+    this.resetData = this.resetData.bind(this);
   }
   handleChange(event) {
     // If something is changed in one of the input in form, update the value in the state and reset the board
@@ -35,6 +36,10 @@ class App extends Component {
   }
   reloadApp() {
     window.location.reload(true);
+  }
+  resetData() {
+    localStorage.removeItem('played_games');
+    this.closeModal()
   }
   displaySettings() {
     this.setState({
@@ -151,7 +156,7 @@ class App extends Component {
       <div className="App" style={appStyle}>
         <Actions showSettings={this.state.showSettings} showStats={this.state.showStats} closeModal={this.closeModal} displaySettings={this.displaySettings} displayStats={this.displayStats} />
         <Modal showModal={this.state.showStats} closeModal={this.closeModal}>
-          <Stats />
+          <Stats resetData={this.resetData} />
         </Modal>
         <Modal showModal={this.state.showSettings} closeModal={this.closeModal}>
           <Form handleChange={this.handleChange} nbRows={this.state.nbRows} nbColumns={this.state.nbColumns} nbBombs={this.state.nbBombs} />

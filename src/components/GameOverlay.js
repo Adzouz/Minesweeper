@@ -3,13 +3,11 @@ import React from 'react';
 function GameOverlay({ gameOver, resetGame }) {
   return !gameOver ? (
     <div className="game-overlay" style={gameOverlayStyle}>
-      <span style={overlayStyle}></span>
       <h2 style={h2Style}><span role="img" aria-label="hurray">🎉</span> YOU WIN <span role="img" aria-label="hurray">🎉</span></h2>
       <button style={buttonStyle} onClick={resetGame}>Reset</button>
     </div>
   ) : (
     <div className="game-overlay" style={gameOverlayStyle}>
-      <span style={overlayStyle}></span>
       <h2 style={h2Style}><span role="img" aria-label="kaboom">💥</span> GAME OVER <span role="img" aria-label="kaboom">💥</span></h2>
       <button style={buttonStyle} onClick={resetGame}>Reset</button>
     </div>
@@ -26,16 +24,8 @@ const gameOverlayStyle = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center'
-};
-
-const overlayStyle = {
+  alignItems: 'center',
   backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  position: 'absolute',
-  top: '0',
-  bottom: '0',
-  left: '0',
-  right: '0',
   zIndex: '20'
 };
 
@@ -45,8 +35,6 @@ const h2Style = {
   color: '#fff',
   padding: '10px 15px',
   marginBottom: '20px',
-  position: 'relative',
-  zIndex: '21',
   textAlign: 'center',
   flex: '0'
 };
@@ -60,9 +48,7 @@ const buttonStyle = {
   color: '#fff',
   border: '0',
   cursor: 'pointer',
-  borderRadius: '5px',
-  position: 'relative',
-  zIndex: '21'
+  borderRadius: '5px'
 };
 
 export default GameOverlay;
