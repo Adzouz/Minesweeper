@@ -22,14 +22,26 @@ function Stats() {
   }
   return (
     <div>
-      <div style={marginStyle}>Won games: {wonGames.value} ({wonGames.percent}%)</div>
-      <div style={marginStyle}>Lost games: {lostGames.value} ({lostGames.percent}%)</div>
+      <div style={lineStyle}>
+        Won games:
+        <strong style={valueStyle}>{wonGames.value}&nbsp;({wonGames.percent}%)</strong>
+      </div>
+      <div style={lineStyle}>
+        Lost games:
+        <strong style={valueStyle}>{lostGames.value}&nbsp;({lostGames.percent}%)</strong>
+      </div>
     </div>
   );
 }
 
-const marginStyle = {
-  marginBottom: '10px'
+const lineStyle = {
+  marginBottom: '10px',
+  textAlign: 'center'
+};
+
+const valueStyle = {
+  display: 'block',
+  fontSize: '2.2rem'
 };
 
 export default Stats;
