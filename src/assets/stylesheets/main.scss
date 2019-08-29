@@ -107,6 +107,31 @@ body,
   }
 }
 
+#notification {
+  position: fixed;
+  bottom: 20px;
+  width: calc(100% - 20px);
+  left: 50%;
+  right: 10px;
+  max-width: 350px;
+  background-color: rgb(241, 196, 15);
+  color: #fff;
+  border-radius: 5px;
+  padding: 15px 25px;
+  font-size: 1.6rem;
+  transition: .4s all ease-in-out;
+  transform: translate(-50%, 200%);
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+
+  &.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 @keyframes rotation {
   from {
     transform: translateX(-50%) rotate(0deg);
