@@ -69,56 +69,64 @@ class TableCell extends Component {
         matrix[coords[0] - 1][coords[1] - 1] &&
         (matrix[coords[0] - 1][coords[1] - 1].counter === 0 || (matrix[coords[0] - 1][coords[1] - 1].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0] - 1][coords[1] - 1].bomb &&
-        !matrix[coords[0] - 1][coords[1] - 1].showed) {
+        !matrix[coords[0] - 1][coords[1] - 1].showed &&
+        !matrix[coords[0] - 1][coords[1] - 1].marked) {
         this.showTile([coords[0] - 1, coords[1] - 1]);
       }
       if (matrix[coords[0] - 1] &&
         matrix[coords[0] - 1][coords[1]] &&
         (matrix[coords[0] - 1][coords[1]].counter === 0 || (matrix[coords[0] - 1][coords[1]].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0] - 1][coords[1]].bomb &&
-        !matrix[coords[0] - 1][coords[1]].showed) {
+        !matrix[coords[0] - 1][coords[1]].showed &&
+        !matrix[coords[0] - 1][coords[1]].marked) {
         this.showTile([coords[0] - 1, coords[1]]);
       }
       if (matrix[coords[0] - 1] &&
         matrix[coords[0] - 1][coords[1] + 1] &&
         (matrix[coords[0] - 1][coords[1] + 1].counter === 0 || (matrix[coords[0] - 1][coords[1] + 1].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0] - 1][coords[1] + 1].bomb &&
-        !matrix[coords[0] - 1][coords[1] + 1].showed) {
+        !matrix[coords[0] - 1][coords[1] + 1].showed &&
+        !matrix[coords[0] - 1][coords[1] + 1].marked) {
         this.showTile([coords[0] - 1, coords[1] + 1]);
       }
       if (matrix[coords[0]] &&
         matrix[coords[0]][coords[1] - 1] &&
         (matrix[coords[0]][coords[1] - 1].counter === 0 || (matrix[coords[0]][coords[1] - 1].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0]][coords[1] - 1].bomb &&
-        !matrix[coords[0]][coords[1] - 1].showed) {
+        !matrix[coords[0]][coords[1] - 1].showed &&
+        !matrix[coords[0]][coords[1] - 1].marked) {
         this.showTile([coords[0], coords[1] - 1]);
       }
       if (matrix[coords[0]] &&
         matrix[coords[0]][coords[1] + 1] &&
         (matrix[coords[0]][coords[1] + 1].counter === 0 || (matrix[coords[0]][coords[1] + 1].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0]][coords[1] + 1].bomb &&
-        !matrix[coords[0]][coords[1] + 1].showed) {
+        !matrix[coords[0]][coords[1] + 1].showed &&
+        !matrix[coords[0]][coords[1] + 1].marked) {
         this.showTile([coords[0], coords[1] + 1]);
       }
       if (matrix[coords[0] + 1] &&
         matrix[coords[0] + 1][coords[1] - 1] &&
         (matrix[coords[0] + 1][coords[1] - 1].counter === 0 || (matrix[coords[0] + 1][coords[1] - 1].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0] + 1][coords[1] - 1].bomb &&
-        !matrix[coords[0] + 1][coords[1] - 1].showed) {
+        !matrix[coords[0] + 1][coords[1] - 1].showed &&
+        !matrix[coords[0] + 1][coords[1] - 1].marked) {
         this.showTile([coords[0] + 1, coords[1] - 1]);
       }
       if (matrix[coords[0] + 1] &&
         matrix[coords[0] + 1][coords[1]] &&
         (matrix[coords[0] + 1][coords[1]].counter === 0 || (matrix[coords[0] + 1][coords[1]].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0] + 1][coords[1]].bomb &&
-        !matrix[coords[0] + 1][coords[1]].showed) {
+        !matrix[coords[0] + 1][coords[1]].showed &&
+        !matrix[coords[0] + 1][coords[1]].marked) {
         this.showTile([coords[0] + 1, coords[1]]);
       }
       if (matrix[coords[0] + 1] &&
         matrix[coords[0] + 1][coords[1] + 1] &&
         (matrix[coords[0] + 1][coords[1] + 1].counter === 0 || (matrix[coords[0] + 1][coords[1] + 1].counter !== 0 && matrix[coords[0]][coords[1]].counter === 0)) &&
         !matrix[coords[0] + 1][coords[1] + 1].bomb &&
-        !matrix[coords[0] + 1][coords[1] + 1].showed) {
+        !matrix[coords[0] + 1][coords[1] + 1].showed &&
+        !matrix[coords[0] + 1][coords[1] + 1].marked) {
         this.showTile([coords[0] + 1, coords[1] + 1]);
       }
     }
@@ -146,7 +154,7 @@ class TableCell extends Component {
       userSelect: 'none',
       border: '2px solid #0a3d62',
       borderRadius: '8px',
-      backgroundColor: this.props.infos.showed ? '#fff' : '#051e31'
+      backgroundColor: this.props.infos.showed ? '#fff' : this.props.infos.marked ? '#f39c12' : '#051e31'
     };
   }
   render() {
