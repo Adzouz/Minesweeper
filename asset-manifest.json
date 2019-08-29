@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Minesweeper/static/css/main.945239db.chunk.css",
-    "main.js": "/Minesweeper/static/js/main.65dc9a12.chunk.js",
-    "main.js.map": "/Minesweeper/static/js/main.65dc9a12.chunk.js.map",
+    "main.js": "/Minesweeper/static/js/main.94877649.chunk.js",
+    "main.js.map": "/Minesweeper/static/js/main.94877649.chunk.js.map",
     "runtime~main.js": "/Minesweeper/static/js/runtime~main.c52e73b8.js",
     "runtime~main.js.map": "/Minesweeper/static/js/runtime~main.c52e73b8.js.map",
     "static/js/2.78e62011.chunk.js": "/Minesweeper/static/js/2.78e62011.chunk.js",
     "static/js/2.78e62011.chunk.js.map": "/Minesweeper/static/js/2.78e62011.chunk.js.map",
     "index.html": "/Minesweeper/index.html",
-    "precache-manifest.a90fc95913b7920e2715ebacc071f621.js": "/Minesweeper/precache-manifest.a90fc95913b7920e2715ebacc071f621.js",
+    "precache-manifest.e5c81f35aa54607e92bb078959e827b0.js": "/Minesweeper/precache-manifest.e5c81f35aa54607e92bb078959e827b0.js",
     "service-worker.js": "/Minesweeper/service-worker.js",
     "static/css/main.945239db.chunk.css.map": "/Minesweeper/static/css/main.945239db.chunk.css.map"
   }
