@@ -73,19 +73,19 @@ body,
 .col {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+  position: relative;
 
   span[aria-label="flag"] {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    transform: rotate(10deg) scale(10.0);
-    transition: .2s transform ease-in-out;
+    display: none;
+    z-index: 3;
   }
   .animated {
+    position: relative;
+    z-index: 3;
+
     span[aria-label="flag"] {
-      opacity: 1;
-      visibility: visible;
-      transform: rotate(0deg) scale(1.0);
+      display: block;
+      animation: glow .25s linear;
     }
   }
   .suggested {
@@ -138,6 +138,18 @@ body,
   }
   to {
     transform: translateX(-50%) rotate(359deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 1px 0px 0px 0px rgba(#f39c12, 0);
+  }
+  50% {
+    box-shadow: 1px 0px 50px 50px rgba(#f39c12, 0.2);
+  }
+  100% {
+    box-shadow: 1px 0px 0px 0px rgba(#f39c12, 0);
   }
 }
 
