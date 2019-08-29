@@ -27,6 +27,9 @@ class App extends Component {
     // If something is changed in one of the input in form, update the value in the state and reset the board
     this.setState({ [event.target.name]: parseInt(event.target.value) > 0 ? parseInt(event.target.value) : 1 }, this.resetBombs);
   }
+  reloadApp() {
+    window.location.reload(true);
+  }
   toggleDisplaySettings() {
     this.setState({
       showSettings: !this.state.showSettings
@@ -135,6 +138,7 @@ class App extends Component {
         <Form handleChange={this.handleChange} nbRows={this.state.nbRows} nbColumns={this.state.nbColumns} nbBombs={this.state.nbBombs} showSettings={this.state.showSettings} closeModal={this.toggleDisplaySettings} />
         {gameOverlay}
         <Table table={this.props.matrix} nbLeftTiles={this.nbLeftTiles()} />
+        <div id="notification" onClick={() => this.reloadApp()}>New update available, click on this message to load it.</div>
       </div>
     );
   }
