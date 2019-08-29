@@ -16,6 +16,7 @@ function GameOverlay({ gameOver, resetGame }) {
   )
 }
 
+// Inline styling
 const gameOverlayStyle = {
   position: 'fixed',
   top: '0',
@@ -25,8 +26,7 @@ const gameOverlayStyle = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  alignItems: 'center',
-  zIndex: '12'
+  alignItems: 'center'
 };
 
 const overlayStyle = {
@@ -36,7 +36,7 @@ const overlayStyle = {
   bottom: '0',
   left: '0',
   right: '0',
-  zIndex: '12'
+  zIndex: '20'
 };
 
 const h2Style = {
@@ -46,7 +46,7 @@ const h2Style = {
   padding: '10px 15px',
   marginBottom: '20px',
   position: 'relative',
-  zIndex: '13',
+  zIndex: '21',
   textAlign: 'center',
   flex: '0'
 };
@@ -62,7 +62,7 @@ const buttonStyle = {
   cursor: 'pointer',
   borderRadius: '5px',
   position: 'relative',
-  zIndex: '13'
+  zIndex: '21'
 };
 
 export default GameOverlay;

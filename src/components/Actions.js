@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const Actions = ({ showSettings, showStats, closeModal, displaySettings, displayStats }) => {
@@ -23,6 +24,16 @@ const Actions = ({ showSettings, showStats, closeModal, displaySettings, display
   );
 }
 
+// Prop types
+Actions.propTypes = {
+  showSettings: PropTypes.bool.isRequired,
+  showStats: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  displaySettings: PropTypes.func.isRequired,
+  displayStats: PropTypes.func.isRequired
+};
+
+// Inline styling
 const actionsStyle = {
   display: 'flex'
 };
@@ -35,7 +46,7 @@ const headerButtonStyle = {
   cursor: 'pointer',
   display: 'block',
   position: 'relative',
-  zIndex: '2',
+  zIndex: '11',
   marginTop: '30px'
 };
 
