@@ -104,7 +104,7 @@ class App extends Component {
           return bc;
         });
         matrix[i][j].counter = counter;
-        if (counter === 0) {
+        if (counter === 0 && !matrix[i][j].bomb) {
           suggestedTiles.push([i, j]);
         }
       }

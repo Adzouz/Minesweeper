@@ -24,7 +24,7 @@ class Form extends Component {
           <label style={infoFormStyle}><span style={infoFormLabelStyle}>Rows:</span><input type="number" pattern="\d*" name="nbRows" value={this.props.nbRows} onChange={this.handleChange} style={inputStyle} /></label>
           <label style={infoFormStyle}><span style={infoFormLabelStyle}>Columns:</span><input type="number" pattern="\d*" name="nbColumns" value={this.props.nbColumns} onChange={this.handleChange} style={inputStyle} /></label>
           <label style={infoFormStyle}><span style={infoFormLabelStyle}>Bombs:</span><input type="number" pattern="\d*" min="1" max={Math.round((this.props.nbRows * this.props.nbColumns) - ((this.props.nbRows * this.props.nbColumns) / 100 * 50))} name="nbBombs" value={this.props.nbBombs} onChange={this.handleChange} style={inputStyle} /></label>
-          <button style={infoFormButtonStyle} onClick={this.props.closeModal}>DONE!</button>
+          <button style={infoFormButtonStyle} onClick={this.props.closeModal}>DONE</button>
         </div>
       </div>
     );
@@ -63,7 +63,7 @@ const contentFormStyle = {
   padding: '10px 15px',
   borderRadius: '5px',
   transform: 'translate(-50%, -50%)',
-  zIndex: '2'
+  zIndex: '12'
 };
 
 const infoFormStyle = {
@@ -84,7 +84,8 @@ const infoFormButtonStyle = {
   padding: '10px 15px',
   color: '#fff',
   marginTop: '1rem',
-  fontSize: '1.4rem'
+  fontSize: '1.4rem',
+  cursor: 'pointer'
 };
 
 const formOverlayStyle = {
@@ -94,7 +95,7 @@ const formOverlayStyle = {
   right: '0',
   bottom: '0',
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  zIndex: '1'
+  zIndex: '11'
 };
 
 export default Form;
