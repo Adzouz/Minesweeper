@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Stats() {
+function Stats({ resetData }) {
   const playedGames = JSON.parse(localStorage.getItem('played_games'));
   let wonGames = {
     value: 0,
@@ -20,8 +20,12 @@ function Stats() {
       percent: Math.round(100 / (playedGames.won + playedGames.lost) * playedGames.lost)
     };
   }
-  return (
+  return playedGames ? (
     <div>
+      <div style={lineStyle}>
+        Total games:
+        <strong style={valueStyle}>{wonGames.value + lostGames.value}</strong>
+      </div>
       <div style={lineStyle}>
         Won games:
         <strong style={valueStyle}>{wonGames.value}&nbsp;({wonGames.percent}%)</strong>
@@ -29,6 +33,13 @@ function Stats() {
       <div style={lineStyle}>
         Lost games:
         <strong style={valueStyle}>{lostGames.value}&nbsp;({lostGames.percent}%)</strong>
+      </div>
+      <button onClick={resetData} style={resetButtonStyle}>Reset data</button>
+    </div>
+  ) : (
+    <div>
+      <div style={lineStyle}>
+        No stats for the moment.
       </div>
     </div>
   );
@@ -42,6 +53,19 @@ const lineStyle = {
 const valueStyle = {
   display: 'block',
   fontSize: '2.2rem'
+};
+
+const resetButtonStyle = {
+  appearance: 'none',
+  display: 'block',
+  width: '100%',
+  border: '0',
+  backgroundColor: '#e74c3c',
+  padding: '10px 15px',
+  color: '#fff',
+  marginTop: '1rem',
+  fontSize: '1.4rem',
+  cursor: 'pointer'
 };
 
 export default Stats;
