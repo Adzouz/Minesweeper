@@ -186,7 +186,8 @@ const appStyle = {
   height: '100vh',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'center',
+  userSelect: 'none'
 };
 
 const linkStyle = {
