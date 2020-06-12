@@ -1,6 +1,10 @@
-# 💣 Basic Minesweeper
+# 💣 Minesweeper
 
+Yet another basic Minesweeper.
 Made with React + Redux 💥
+
+- [x] 📱 Installable as an app
+- [x] ✈️ Offline support
 
 ## Demo
 
