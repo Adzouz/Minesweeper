@@ -5,7 +5,7 @@ const initialState = {
   gameOver: false
 };
 
-export default function(state = initialState, action) {
+const gameReducer = (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_MATRIX:
       return {
@@ -21,3 +21,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+export default gameReducer;
